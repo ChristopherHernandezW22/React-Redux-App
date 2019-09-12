@@ -1,3 +1,5 @@
+import { FETCH_CARDID_START, FETCH_CARDID_SUCCESS, FETCH_CARDID_FAIL } from '../actions/Action';
+
 const initialState = {
     cardID: null,
     error: "",

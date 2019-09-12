@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { getCardID } from './actions/Action';
 
 const apiCall = () =>{
 
@@ -29,6 +30,14 @@ function App(props) {
     <div className="App">
       <button onClick={()=>apiCall()}>Fetch call</button>
       <h1>Hearthstone API</h1>
+      {props.loading && <div>loading...</div>}
+      {props.cardID && (
+          <div>
+              <img src={props.cardID.url}/>
+              <p>{props.cardID.explanation}</p>
+          </div>)}
+        {/* {props.error !== "" && <p>{error}</p>} */}
+      <button onClick={props.getCardID}>Hearthstone Card Data</button>
     </div>
   );
 }
@@ -41,4 +50,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, { getCardID })(App);
