@@ -1,9 +1,9 @@
 import axios from "axios";
 import { dispatch } from "rxjs/internal/observable/range";
 
-const FETCH_CARDID_START = "FETCH_CARDID_START";
-const FETCH_CARDID_SUCCESS = "FETCH_CARDID_SUCCESS";
-const FETCH_CARDID_FAIL = "FETCH_CARDID_FAIL";
+export const FETCH_CARDID_START = "FETCH_CARDID_START";
+export const FETCH_CARDID_SUCCESS = "FETCH_CARDID_SUCCESS";
+export const FETCH_CARDID_FAIL = "FETCH_CARDID_FAIL";
 
 export const getCardID = () => dispatch => {
     console.log("testing");

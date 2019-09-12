@@ -8,6 +8,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case FETCH_CARDID_START:
+            return {
+                ...state,
+                error: "",
+                loading: true
+            };
         default:
             return state;
     }
