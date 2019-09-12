@@ -4,7 +4,7 @@ export const FETCH_CARDID_START = "FETCH_CARDID_START";
 export const FETCH_CARDID_SUCCESS = "FETCH_CARDID_SUCCESS";
 export const FETCH_CARDID_FAIL = "FETCH_CARDID_FAIL";
 
-export const getCardID = () => dispatch => {
+export const getCardID = (selection) => dispatch => {
     // console.log("testing");
     dispatch({ type: FETCH_CARDID_START });
     fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/", {
@@ -20,7 +20,7 @@ export const getCardID = () => dispatch => {
     .then (res => {
         // console.log("successful fetch", res.Classic)
         console.log(res);
-        dispatch({ type: FETCH_CARDID_SUCCESS, payload: res.Classic})
+        dispatch({ type: FETCH_CARDID_SUCCESS, payload: res[selection]})
     })
     .catch (err => {
         // console.log("ERRORRRRRR", err)
