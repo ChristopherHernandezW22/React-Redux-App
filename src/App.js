@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 const apiCall = () =>{
 
@@ -22,7 +23,8 @@ const apiCall = () =>{
 });
 }
 
-function App() {
+function App(props) {
+  console.log(props);
   return (
     <div className="App">
       <button onClick={()=>apiCall()}>Fetch call</button>
@@ -31,4 +33,12 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    cardID: state.cardID,
+    error: state.error,
+    loading: state.loading
+  };
+};
+
+export default connect(mapStateToProps, null)(App);

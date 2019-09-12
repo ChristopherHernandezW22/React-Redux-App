@@ -7,8 +7,8 @@ const FETCH_CARDID_FAIL = "FETCH_CARDID_FAIL";
 
 const getCardID = () => dispatch => {
     dispatch({ type: FETCH_CARDID_START });
-    axios.get("https://rapidapi.com/omgvamp/api/hearthstone?apiKey=526395db8emshdb6e39fb34ce32bp162132jsn16ecdb8b1bee")
-    .then (res => console.log(res))
-    .catch (err => console.log(err))
-
+    axios.get(`https://rapidapi.com/omgvamp/api/hearthstone?apiKey=${process.env.REACT_APP_CARDID_KEY}`)
+    // .then (res => console.log(res))
+    .then (res => dispatch({ type: FETCH_CARDID_SUCCESS, PAYLOAD: res.data}))
+    .catch (err => dispatch({ type: FETCH_CARDID_FAIL, PAYLOAD: err.response}));
 };

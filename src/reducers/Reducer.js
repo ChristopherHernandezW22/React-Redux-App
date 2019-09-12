@@ -1,5 +1,7 @@
 const initialState = {
-    cardID: null
+    cardID: null,
+    error: "",
+    loading: false
 };
 
 const reducer = (state = initialState, action) => {
