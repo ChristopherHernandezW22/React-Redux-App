@@ -1,13 +1,13 @@
 import { FETCH_CARDID_START, FETCH_CARDID_SUCCESS, FETCH_CARDID_FAIL } from '../actions/Action';
 
 const initialState = {
-    cardID: null,
     error: "",
-    loading: false
+    loading: false,
+    cards: null
 };
 
 const reducer = (state = initialState, action) => {
-    console.log('action', action);
+    // console.log('action', action);
     switch(action.type) {
         case FETCH_CARDID_START:
             return {
@@ -16,11 +16,13 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case FETCH_CARDID_SUCCESS:
+            console.log("RUNNING HERE");
+            console.log(action.payload)
             return {
-                ...state,
+                // ...state,
                 error: "",
                 loading: false,
-                cardID: action.payload
+                cards: action.payload,
             };
         case FETCH_CARDID_FAIL:
             return {
