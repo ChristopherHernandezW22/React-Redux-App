@@ -28,7 +28,7 @@ function App(props) {
   console.log(props);
   return (
     <div className="App">
-      <button onClick={()=>apiCall()}>Fetch call</button>
+      {/* <button onClick={()=>apiCall()}>Fetch call</button> */}
       <h1>Hearthstone API</h1>
       {props.loading && <div>loading...</div>}
       {props.cardID && (
