@@ -3,55 +3,53 @@ import './App.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getCardID } from './actions/Action';
+import {Card, Button, Icon, Image} from 'semantic-ui-react';
 
-// const apiCall = () =>{
-//   fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "526395db8emshdb6e39fb34ce32bp162132jsn16ecdb8b1bee"
-// 	}
-// })
-// .then(response => {
-// 	return response.json();
-// })
-// .then(res=>{
-//   console.log(res);
-// })
-// .catch(err => {
-// 	console.log("error", err);
-// });
-// }
+
 
 function App(props) {
-  // console.log(props);
+
   return (
     <div className="App">
-      {/* <button onClick={()=>apiCall()}>Fetch call</button> */}
       <h1>Hearthstone API</h1>
-      <button onClick={props.getCardID}>Hearthstone Card Data</button>
+      <Button onClick={props.getCardID}>Hearthstone Card Data</Button>
       {props.loading && <div>loading...</div>}
       {props.err && <div>{props.err}</div>}
-      {/* props.monsters.map(mon=>{
-        return <cardComponent img={mon.url} mon={mon} />
-      }) */}
-      {props.cards && props.cards.map(card=>{
-        return <CardComponent card={card} key={card.cardId} />
-      })}
-        {/* {props.error !== "" && <p>{error}</p>} */}
+      <Card.Group>
+        {props.cards && props.cards.map(card=>{
+          if(!card.imgGold){
+            return false;
+          }
+          if(!card.rarity){
+            return false;
+          }
+          if(!card.flavor){
+            return false;
+          }
+          return <CardComponent card={card} key={card.cardId} />
+        })}
+      </Card.Group>
     </div>
   );
 }
 
-const CardComponent = (props) =>{  
+const CardComponent = (props) =>{
+
     return (
-      <div>
-        <img src={props.card.imgGold}/>
-        <h2>{props.card.name}</h2>
-        <p>{props.card.text}</p>
-        <hr />
-        <br />
-     </div>
+      <Card>
+      <Image src={props.card.imgGold} wrapped ui={false} />
+      <Card.Content>
+      <Card.Header>{props.card.playerClass}</Card.Header>
+      <Card.Meta>
+        <span className='date'>{props.card.rarity && props.card.rarity + ` Card`}</span>
+      </Card.Meta>
+      <Card.Description>
+      {props.card.flavor}
+      </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+    </Card.Content>
+     </Card>
     );
 }
 
